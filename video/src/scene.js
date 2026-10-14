@@ -563,20 +563,32 @@ const BEATS = [
 
 // ----------------------------------------------------- linha do tempo e estado
 const XF = 0.6;   // duração da transição entre cenas
+const NARR_OFFSET = 0.4;   // a fala começa um pouco depois do início do trecho
 function capWords(s) { return s.replace(/[_{}*]/g, '').split(/\s+/).filter(Boolean).length; }
 function computeTimeline() {
   let t = 0;
   let st = { power: false, sw: [0, 0], pot: 2.9 };
   const added = {};
+  const audio = window.AUDIO_DURS;
+  if (window.FALAS && window.FALAS.length !== BEATS.length) throw new Error('falas.js e BEATS têm tamanhos diferentes');
   BEATS.forEach((b, k) => {
     b.stepIdx = STEP_IDX[b.step];
-    let d = Math.max(4.5, capWords(b.cap) / 2.6 + 1.3);
-    if (b.add) d += 0.35 * (b.add.length - 1);
-    if (b.potDur) d = Math.max(d, b.potAt + b.potDur + 3.5);
-    if (b.swSeq) d = Math.max(d, b.swSeq.length * b.seqDt + 1.5);
+    b.fala = window.FALAS ? window.FALAS[k] : '';
+    let d;
+    if (audio && audio[k]) {
+      // com narração, o trecho dura o tempo da fala mais uma pequena pausa
+      d = NARR_OFFSET + audio[k] + 0.9;
+      if (b.potDur) d = Math.max(d, b.potAt + b.potDur + 1.5);
+      if (b.swSeq) d = Math.max(d, b.swSeq.length * b.seqDt + 1.0);
+    } else {
+      d = Math.max(4.5, capWords(b.cap) / 2.6 + 1.3);
+      if (b.add) d += 0.35 * (b.add.length - 1);
+      if (b.potDur) d = Math.max(d, b.potAt + b.potDur + 3.5);
+      if (b.swSeq) d = Math.max(d, b.swSeq.length * b.seqDt + 1.5);
+      d += b.extra || 0;
+    }
     if (b.checks) d = Math.max(d, (b.checks[1] - b.checks[0]) * 1.1 + 2.5);
     if (k === BEATS.length - 1) d += 2.5;
-    d += b.extra || 0;
     b.dur = Math.round(d * 10) / 10;
     b.start = Math.round(t * 1000) / 1000;
     t += b.dur;
@@ -1242,6 +1254,8 @@ window.renderAt = function (t) {
 };
 window.TIMELINE = {
   total: TL.total,
-  beats: BEATS.map(b => ({ start: b.start, dur: b.dur, step: STEPS[b.stepIdx].label, title: STEPS[b.stepIdx].title, cap: b.cap, item: b.item || '', scene: b.scene })),
+  narrOffset: NARR_OFFSET,
+  narrated: !!window.AUDIO_DURS,
+  beats: BEATS.map(b => ({ start: b.start, dur: b.dur, step: STEPS[b.stepIdx].label, title: STEPS[b.stepIdx].title, cap: b.cap, fala: b.fala, item: b.item || '', scene: b.scene })),
 };
 window.READY = true;

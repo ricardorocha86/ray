@@ -1,0 +1,345 @@
+{
+ "12": {
+  "hash": "fbd93a37c5fcde93",
+  "dur": 15.49,
+  "file": "trecho_12.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "13": {
+  "hash": "4982d16e28f583f4",
+  "dur": 14.23,
+  "file": "trecho_13.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "14": {
+  "hash": "4928772e5b65fce2",
+  "dur": 10.475,
+  "file": "trecho_14.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "0": {
+  "hash": "6b4006711f9d2e74",
+  "dur": 10.24,
+  "file": "trecho_00.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "1": {
+  "hash": "8ea361f880a2822d",
+  "dur": 11.06,
+  "file": "trecho_01.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "2": {
+  "hash": "a3fef130cee1c1ae",
+  "dur": 18.4,
+  "file": "trecho_02.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "3": {
+  "hash": "6cb43918d835af6b",
+  "dur": 18.63,
+  "file": "trecho_03.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "4": {
+  "hash": "e544e3ee07ea805d",
+  "dur": 16.05,
+  "file": "trecho_04.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "5": {
+  "hash": "09c96601e80f406e",
+  "dur": 12.44,
+  "file": "trecho_05.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "6": {
+  "hash": "d1c2e92eb4c1d66d",
+  "dur": 8.36,
+  "file": "trecho_06.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "7": {
+  "hash": "11931e6d50ac1230",
+  "dur": 13.04,
+  "file": "trecho_07.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "8": {
+  "hash": "feeabe0d99e800a2",
+  "dur": 8.48,
+  "file": "trecho_08.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "9": {
+  "hash": "81d5ef74b56103f9",
+  "dur": 14.04,
+  "file": "trecho_09.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "10": {
+  "hash": "a9ba80a14d4c3831",
+  "dur": 13.73,
+  "file": "trecho_10.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "11": {
+  "hash": "e6681f68dcb91f22",
+  "dur": 13.885,
+  "file": "trecho_11.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "15": {
+  "hash": "a866565126253eb5",
+  "dur": 8.88,
+  "file": "trecho_15.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "16": {
+  "hash": "abd26dc95f122c0b",
+  "dur": 13.71,
+  "file": "trecho_16.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "17": {
+  "hash": "52a38fef2cbff2b7",
+  "dur": 14.43,
+  "file": "trecho_17.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "18": {
+  "hash": "da299c8628fcf6f1",
+  "dur": 14.36,
+  "file": "trecho_18.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "19": {
+  "hash": "62817bade27c8f20",
+  "dur": 13.0,
+  "file": "trecho_19.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "20": {
+  "hash": "29ade020b5d2754d",
+  "dur": 15.77,
+  "file": "trecho_20.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "21": {
+  "hash": "deda71b161ce48b1",
+  "dur": 12.88,
+  "file": "trecho_21.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "22": {
+  "hash": "b03a85cdf57b6e34",
+  "dur": 11.5,
+  "file": "trecho_22.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "23": {
+  "hash": "438dc69c876ff663",
+  "dur": 12.83,
+  "file": "trecho_23.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "24": {
+  "hash": "8aa44072b25d46cc",
+  "dur": 8.07,
+  "file": "trecho_24.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "25": {
+  "hash": "926247368fe54bf2",
+  "dur": 12.86,
+  "file": "trecho_25.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "26": {
+  "hash": "166078d9e08b7d2e",
+  "dur": 11.58,
+  "file": "trecho_26.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "27": {
+  "hash": "1fcb0a779658c1eb",
+  "dur": 15.28,
+  "file": "trecho_27.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "28": {
+  "hash": "3bb1675dd11e7ebb",
+  "dur": 11.91,
+  "file": "trecho_28.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "29": {
+  "hash": "732ae7f3009eb032",
+  "dur": 14.8,
+  "file": "trecho_29.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "30": {
+  "hash": "924bf7190318652c",
+  "dur": 10.22,
+  "file": "trecho_30.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "31": {
+  "hash": "b63170ad8c3a81a7",
+  "dur": 9.99,
+  "file": "trecho_31.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "32": {
+  "hash": "e45f31594b019f7d",
+  "dur": 12.53,
+  "file": "trecho_32.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "33": {
+  "hash": "d5b0794e372c007d",
+  "dur": 10.75,
+  "file": "trecho_33.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "34": {
+  "hash": "a832ff20d6fcbc52",
+  "dur": 10.755,
+  "file": "trecho_34.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "35": {
+  "hash": "bc69e0edf3ecf14a",
+  "dur": 12.71,
+  "file": "trecho_35.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "36": {
+  "hash": "4c62f200234fdca2",
+  "dur": 10.39,
+  "file": "trecho_36.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "37": {
+  "hash": "ae5a52b2206290ba",
+  "dur": 11.61,
+  "file": "trecho_37.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "38": {
+  "hash": "6d1234e383b87779",
+  "dur": 10.68,
+  "file": "trecho_38.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "39": {
+  "hash": "4afd13338de8cfc5",
+  "dur": 9.14,
+  "file": "trecho_39.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "40": {
+  "hash": "51fa843c777a202d",
+  "dur": 7.42,
+  "file": "trecho_40.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "41": {
+  "hash": "d535a09b7d760370",
+  "dur": 9.84,
+  "file": "trecho_41.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "42": {
+  "hash": "eb19c511b1db034d",
+  "dur": 13.84,
+  "file": "trecho_42.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "43": {
+  "hash": "2190fe679223225e",
+  "dur": 11.46,
+  "file": "trecho_43.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "44": {
+  "hash": "20cb1071522f4886",
+  "dur": 13.95,
+  "file": "trecho_44.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "45": {
+  "hash": "d0399f22f65f1b19",
+  "dur": 14.67,
+  "file": "trecho_45.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "46": {
+  "hash": "f1f05319c69314c6",
+  "dur": 11.69,
+  "file": "trecho_46.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "47": {
+  "hash": "a7b94edd7255cff7",
+  "dur": 11.05,
+  "file": "trecho_47.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ },
+ "48": {
+  "hash": "1b6c42e32ce33189",
+  "dur": 11.205,
+  "file": "trecho_48.flac",
+  "model": "gemini-3.1-flash-tts-preview",
+  "voice": "Charon"
+ }
+}

@@ -2,10 +2,11 @@
 /*
  * Gera o vídeo a partir de src/index.html.
  *
- *   node render.cjs                 -> output/montagem_protoboard.mp4 + legendas + roteiro
+ *   node render.cjs                 -> output/video_sem_audio.mp4 + legendas + roteiro
  *   node render.cjs --stills 10,42  -> output/stills/quadro_<t>.png (instantes em segundos)
  *   node render.cjs --beats         -> um quadro do meio de cada trecho (revisão rápida)
  *   node render.cjs --layout        -> output/protoboard_final.png (folha de consulta)
+ *   node render.cjs --textos        -> só legendas, roteiro e output/timeline.json (sem vídeo)
  *
  * Requer Node, Playwright (com Chromium) e ffmpeg no PATH.
  */
@@ -34,12 +35,15 @@ const mmss = t => `${Math.floor(t / 60)}:${String(Math.floor(t % 60)).padStart(2
 const plain = s => s.replace(/_\{([^}]*)\}/g, '$1').replace(/\*/g, '');
 
 function writeTexts(tl) {
-  const srt = tl.beats.map((b, i) => `${i + 1}\n${srtTime(b.start + 0.1)} --> ${srtTime(b.start + b.dur - 0.1)}\n${plain(b.cap)}\n`).join('\n');
+  fs.writeFileSync(path.join(OUT, 'timeline.json'), JSON.stringify(tl, null, 1));
+  // com narração, a legenda acompanha a fala; sem narração, o texto que aparece na tela
+  const subText = b => plain(tl.narrated && b.fala ? b.fala : b.cap);
+  const srt = tl.beats.map((b, i) => `${i + 1}\n${srtTime(b.start + 0.1)} --> ${srtTime(b.start + b.dur - 0.1)}\n${subText(b)}\n`).join('\n');
   fs.writeFileSync(path.join(OUT, 'legendas.srt'), srt);
 
   let md = '# Roteiro de narração — montagem do perceptron na protoboard\n\n';
-  md += 'Gerado automaticamente a partir de `src/scene.js`. Os tempos batem com o vídeo `montagem_protoboard.mp4`;\n';
-  md += 'leia cada fala dentro da janela indicada para gravar a narração por cima do vídeo.\n\n';
+  md += 'Gerado automaticamente a partir de `src/scene.js` e `src/falas.js`. Os tempos batem com o vídeo;\n';
+  md += '“Fala” é o texto narrado e “Legenda” é o que aparece escrito na tela.\n\n';
   md += `Duração total: **${mmss(tl.total)}**\n\n`;
   let last = '';
   for (const b of tl.beats) {
@@ -47,7 +51,7 @@ function writeTexts(tl) {
     if (head !== last) { md += `\n## ${head}\n\n`; last = head; }
     md += `**${mmss(b.start)}–${mmss(b.start + b.dur)}**`;
     if (b.item) md += ` · _Na tela:_ ${plain(b.item)}`;
-    md += `\n\n> ${plain(b.cap)}\n\n`;
+    md += `\n\n**Fala:** ${plain(b.fala || b.cap)}\n\n**Legenda:** ${plain(b.cap)}\n\n`;
   }
   fs.writeFileSync(path.join(OUT, 'roteiro_narracao.md'), md);
 }
@@ -62,6 +66,13 @@ function writeTexts(tl) {
   await page.waitForFunction(() => window.READY === true);
   const tl = await page.evaluate(() => window.TIMELINE);
   console.log(`Duração: ${tl.total.toFixed(1)} s, ${tl.beats.length} trechos`);
+
+  if (args.includes('--textos')) {
+    writeTexts(tl);
+    console.log('Textos e output/timeline.json atualizados');
+    await browser.close();
+    return;
+  }
 
   if (args.includes('--layout')) {
     await page.evaluate(() => window.renderLayout());
@@ -90,7 +101,8 @@ function writeTexts(tl) {
   }
 
   writeTexts(tl);
-  const file = path.join(OUT, 'montagem_protoboard.mp4');
+  // sem áudio; narrar.py mix junta a narração e grava output/montagem_protoboard.mp4
+  const file = path.join(OUT, 'video_sem_audio.mp4');
   const ff = spawn('ffmpeg', ['-y', '-loglevel', 'error', '-f', 'image2pipe', '-framerate', String(FPS), '-i', '-',
     '-c:v', 'libx264', '-preset', 'slow', '-crf', '20', '-tune', 'animation', '-pix_fmt', 'yuv420p',
     '-movflags', '+faststart', file], { stdio: ['pipe', 'inherit', 'inherit'] });

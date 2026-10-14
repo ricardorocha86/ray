@@ -1,2 +1,6 @@
 video/output/stills/
 node_modules/
+video/output/video_sem_audio.mp4
+video/output/audio/lotes/
+video/output/audio/amostra.wav
+__pycache__/

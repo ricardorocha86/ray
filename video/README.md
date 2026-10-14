@@ -1,18 +1,22 @@
 # Vídeo: montagem do perceptron (função AND) na protoboard
 
-Vídeo didático animado que mostra, furo por furo, como montar na protoboard o
+Vídeo didático animado e narrado que mostra, furo por furo, como montar na protoboard o
 circuito do material *Construindo uma rede neural física* (perceptron AND com LM358).
 
 ## O que tem nesta pasta
 
 | Arquivo | Para que serve |
 |---|---|
-| `output/montagem_protoboard.mp4` | Vídeo pronto (1920×1080, ~9 min, com legendas na tela e sem áudio) |
-| `output/roteiro_narracao.md` | Texto da narração com os tempos de cada trecho, para gravar a voz por cima |
-| `output/legendas.srt` | Legendas em arquivo separado (YouTube, VLC etc.) |
+| `output/montagem_protoboard.mp4` | Vídeo pronto (1920×1080, ~11 min, narrado e com legendas na tela) |
+| `output/roteiro_narracao.md` | Roteiro com os tempos: o que é falado e o que aparece escrito em cada trecho |
+| `output/legendas.srt` | Legendas da narração em arquivo separado (YouTube, VLC etc.) |
 | `output/protoboard_final.png` | Imagem da montagem completa, para usar como folha de consulta |
+| `output/audio/` | Um áudio por trecho da narração (cache; evita gastar cota de novo) |
 | `src/scene.js` | Desenho e roteiro da animação (legendas, ordem das peças, furos) |
+| `src/falas.js` | Texto falado de cada trecho, escrito para ser lido em voz alta |
+| `narrar.py` | Gera a narração com o TTS do Gemini e junta ao vídeo |
 | `render.cjs` | Gera o vídeo, as legendas e o roteiro a partir de `src/` |
+| `gerar_video_narrado.sh` | Faz tudo na ordem certa |
 
 ## Estrutura do vídeo
 
@@ -83,26 +87,38 @@ Neste layout, a trilha de fora é +5 V e a de dentro é GND, nas duas bordas.
   (cerca de 1,5 mA com 1 kΩ). Isso é normal.
 - Se as trilhas da sua protoboard forem interrompidas no meio, una as metades com jumpers.
 
-## Como usar o vídeo
+## Como a narração é feita
 
-- **Com narração:** grave a voz lendo `output/roteiro_narracao.md`. Cada fala tem a janela de tempo do
-  trecho correspondente. Depois junte o áudio com qualquer editor, ou pelo terminal:
-  `ffmpeg -i output/montagem_protoboard.mp4 -i narracao.m4a -c:v copy -c:a aac -shortest video_final.mp4`
-- **Sem narração:** as legendas já estão gravadas na imagem. O `.srt` serve para plataformas que exibem
-  legendas à parte.
-- **Filmando uma montagem real:** use o roteiro como sequência de cenas, com a câmera de cima e a
-  protoboard na mesma orientação do vídeo. A animação também pode entrar como inserto entre as tomadas.
+A narração vem primeiro e o vídeo se ajusta a ela. Cada trecho do vídeo dura o tempo da sua fala
+(mais uma pausa curta), então não há corte de áudio nem fala atropelada.
+
+1. `src/falas.js` tem o texto falado de cada trecho. Ele segue a legenda, mas sem setas, subscritos ou
+   símbolos de unidade.
+2. `narrar.py tts` pede o áudio ao TTS do Gemini (voz `Charon`). Para economizar a cota gratuita
+   (10 pedidos por dia por modelo), vários trechos vão num mesmo pedido, separados por `[long pause]`,
+   e o áudio é cortado nessas pausas. O resultado fica em `output/audio/` e `src/duracoes.js`.
+3. `narrar.py conferir` transcreve cada trecho com o Gemini e compara com o texto.
+4. `node render.cjs` renderiza o vídeo usando as durações de `src/duracoes.js`.
+5. `narrar.py mix` posiciona cada fala no início do seu trecho, normaliza o volume e grava o vídeo final.
+
+A narração atual foi gerada com `gemini-3.1-flash-tts-preview`.
 
 ## Como regenerar (após editar textos ou o layout)
 
-Requer Node.js, Playwright com Chromium e ffmpeg.
+Requer Node.js, Playwright com Chromium, ffmpeg e Python 3 com numpy.
 
 ```bash
 cd video
-node render.cjs                 # vídeo + legendas + roteiro em output/
-node render.cjs --beats         # um quadro de cada trecho em output/stills/ (revisão rápida)
-node render.cjs --stills 120.5  # quadro(s) em instantes específicos, em segundos
+export GEMINI_API_KEY=...                  # só se alguma fala mudou
+export GEMINI_TTS_MODEL=gemini-3.1-flash-tts-preview   # para manter a mesma voz
+./gerar_video_narrado.sh                   # narração (só o que mudou) + vídeo + mixagem
 ```
 
+- Mudou só o desenho ou uma legenda: `node render.cjs && python3 narrar.py mix` (não usa a API).
+- Mudou uma fala em `src/falas.js`: rode `./gerar_video_narrado.sh`; só aquele trecho é narrado de novo.
+- Trocar a voz: `GEMINI_TTS_VOICE=Kore ./gerar_video_narrado.sh` (narra tudo de novo).
+- Revisão rápida: `node render.cjs --beats` (um quadro de cada trecho em `output/stills/`) ou
+  `node render.cjs --stills 120.5`.
+
 As legendas, os furos e a ordem das peças estão em `BEATS` e `COMP`, no arquivo `src/scene.js`.
-A duração de cada trecho é calculada a partir do tamanho da legenda.
+Sem `src/duracoes.js` preenchido, a duração de cada trecho é estimada pelo tamanho da legenda.
