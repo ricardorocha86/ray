@@ -1,0 +1,195 @@
+1
+00:00:00,100 --> 00:00:08,900
+Neste vídeo, vamos montar na protoboard o perceptron que implementa a função AND — passo a passo, furo por furo.
+
+2
+00:00:09,100 --> 00:00:19,400
+O treinamento acontece no R. O circuito apenas executa a regra aprendida: os pesos viram resistores e o viés vira uma tensão de referência.
+
+3
+00:00:19,600 --> 00:00:35,700
+Com w1 = w2 = 2 e b = −3, usamos R1 = R2 = 10 kΩ, R0 = 4,7 kΩ e um limiar de cerca de 1,8 V. O LED acende só quando x1 = x2 = 1.
+
+4
+00:00:35,900 --> 00:00:46,600
+Separe o material: protoboard, fonte regulada de 5 V, LM358, duas chaves, potenciômetro de 10 kΩ, resistores, LED, capacitor de 100 nF, jumpers e multímetro.
+
+5
+00:00:46,800 --> 00:00:54,800
+Identifique os resistores pelas cores: 10 kΩ é marrom-preto-laranja, 4,7 kΩ é amarelo-violeta-vermelho e 1 kΩ é marrom-preto-vermelho.
+
+6
+00:00:55,000 --> 00:01:05,700
+Na protoboard, os cinco furos de uma mesma coluna numerada estão ligados entre si: a–e na metade de cima e f–j na metade de baixo.
+
+7
+00:01:05,900 --> 00:01:17,400
+O canal central separa as duas metades. É sobre ele que o chip será encaixado, para que os pinos de um lado não encostem nos do outro.
+
+8
+00:01:17,600 --> 00:01:28,700
+As trilhas das bordas levam a alimentação. Neste vídeo, a trilha de fora é +5 V (linha vermelha) e a de dentro é GND (linha azul).
+
+9
+00:01:28,900 --> 00:01:39,200
+Confira as marcas da sua protoboard. Em alguns modelos, as trilhas são interrompidas no meio: nesse caso, una as duas metades com um jumper.
+
+10
+00:01:39,400 --> 00:01:52,400
+Passo 1: com a fonte desligada, ligue o positivo de 5 V à trilha + de cima e o GND à trilha − de cima. Ela só será ligada no final.
+
+11
+00:01:52,600 --> 00:02:05,200
+Leve +5 V e GND também às trilhas de baixo com dois jumpers na ponta direita: o vermelho liga + com +, e o preto liga − com −.
+
+12
+00:02:05,400 --> 00:02:17,300
+Passo 2: pegue o LM358 e encontre a meia-lua (ou o pontinho) no corpo do chip. Ela marca o pino 1, e a contagem segue no sentido anti-horário.
+
+13
+00:02:17,500 --> 00:02:31,300
+Encaixe o chip sobre o canal central, nas colunas 15 a 18, com a meia-lua para a esquerda. Os pinos 1 a 4 ficam embaixo e os pinos 8 a 5, em cima.
+
+14
+00:02:31,500 --> 00:02:44,100
+Vamos usar o primeiro amplificador: o pino 3 recebe a soma VS, o pino 2 recebe o limiar Vref e o pino 1 é a saída que acende o LED.
+
+15
+00:02:44,300 --> 00:02:53,900
+Passo 3: ligue o pino 8 ao +5 V com um jumper vermelho, do furo a15 até a trilha + de cima.
+
+16
+00:02:54,100 --> 00:03:02,500
+Ligue o pino 4 ao GND com um jumper preto, do furo j18 até a trilha − de baixo.
+
+17
+00:03:02,700 --> 00:03:16,100
+Coloque o capacitor de 100 nF entre +5 V e GND, bem ao lado do chip. É o mesmo que ligá-lo entre os pinos 8 e 4, e ele estabiliza a alimentação.
+
+18
+00:03:16,300 --> 00:03:28,600
+Passo 4: o segundo amplificador não será usado, mas não pode ficar com as entradas soltas. Ligue o pino 5 ao GND: jumper de a18 até a trilha −.
+
+19
+00:03:28,800 --> 00:03:40,700
+Agora ligue o pino 6 ao pino 7 com um jumper curto, de c16 a c17. Assim o segundo amplificador fica quieto, como um seguidor de 0 V.
+
+20
+00:03:40,900 --> 00:03:53,200
+Passo 5: encaixe a chave da entrada x1 nos furos g1, g2 e g3. O terminal do meio, g2, é o comum: é ele que vai para o resistor.
+
+21
+00:03:53,400 --> 00:04:07,900
+Ligue um terminal lateral ao +5 V (jumper de j1 até a trilha +) e o outro ao GND (de j3 até a trilha −). A chave escolhe entre 0 V e 5 V.
+
+22
+00:04:08,100 --> 00:04:19,100
+Repita para a entrada x2: chave em g8, g9 e g10, jumper de j8 até o +5 V e de j10 até o GND.
+
+23
+00:04:19,300 --> 00:04:31,600
+Atenção: confira com o multímetro qual terminal é o comum da sua chave, pois a posição da alavanca não garante isso. E nunca ligue +5 V direto no GND.
+
+24
+00:04:31,800 --> 00:04:42,500
+Passo 6: a coluna 5 será o nó de soma, VS. Ligue R1, de 10 kΩ, do furo f2 (comum da chave x1) até f5.
+
+25
+00:04:42,700 --> 00:04:49,600
+Ligue R2, também de 10 kΩ, do furo i9 (comum da chave x2) até i5.
+
+26
+00:04:49,800 --> 00:05:00,900
+Ligue R0, de 4,7 kΩ, do furo j5 até a trilha GND. Ele puxa o nó para 0 V quando as duas chaves estão em 0.
+
+27
+00:05:01,100 --> 00:05:09,100
+Por fim, leve VS ao pino 3 do LM358 com um jumper amarelo, do furo h5 até h17.
+
+28
+00:05:09,300 --> 00:05:20,000
+Passo 7: o potenciômetro de 10 kΩ gera o limiar. Encaixe-o nos furos f11, f12 e f13. O terminal do meio, f12, é o cursor.
+
+29
+00:05:20,200 --> 00:05:31,300
+Ligue um terminal externo ao +5 V (jumper de j11 até a trilha +) e o outro ao GND (de j13 até a trilha −).
+
+30
+00:05:31,500 --> 00:05:43,000
+Leve o cursor ao pino 2 do LM358 com um jumper verde, do furo i12 até i16. Girando o potenciômetro, Vref varia entre 0 e 5 V.
+
+31
+00:05:43,200 --> 00:05:52,000
+Passo 8: leve a saída, o pino 1, para a direita com um jumper laranja, do furo g15 até g21.
+
+32
+00:05:52,200 --> 00:06:01,400
+Coloque o resistor de 1 kΩ de h21 até h25. Ele limita a corrente do LED e nunca deve ser retirado.
+
+33
+00:06:01,600 --> 00:06:11,500
+O LED tem polaridade: a perna longa (ânodo) vai em g25, junto do resistor; a perna curta (cátodo, lado chato) vai em g26.
+
+34
+00:06:11,700 --> 00:06:21,600
+Feche o circuito ligando a coluna 26 ao GND, com um jumper preto de j26 até a trilha −. A montagem está completa!
+
+35
+00:06:21,800 --> 00:06:32,900
+Antes de ligar, revise: meia-lua para a esquerda, pino 8 no +5 V, pino 4 no GND e nenhum fio ligando +5 V direto ao GND.
+
+36
+00:06:33,100 --> 00:06:44,200
+Confira também: VS no pino 3, Vref no pino 2, LED com a perna longa do lado do resistor e todas as partes no mesmo GND.
+
+37
+00:06:44,400 --> 00:06:55,500
+Tudo certo? Ligue a fonte. Com o multímetro em tensão contínua, meça entre as trilhas + e −: o valor deve ficar perto de 5 V.
+
+38
+00:06:55,700 --> 00:07:09,300
+Agora meça o cursor do potenciômetro (furo g12) em relação ao GND e gire até cerca de 1,8 V. Esse é o limiar da função AND.
+
+39
+00:07:09,500 --> 00:07:20,600
+Teste as quatro combinações medindo VS na coluna 5. Com x1 = 0 e x2 = 0, VS = 0 V, abaixo do limiar: LED apagado.
+
+40
+00:07:20,800 --> 00:07:28,800
+x1 = 0 e x2 = 1: VS ≈ 1,21 V, ainda abaixo de 1,8 V. LED apagado.
+
+41
+00:07:29,000 --> 00:07:36,300
+x1 = 1 e x2 = 0: o mesmo valor, cerca de 1,21 V. LED apagado.
+
+42
+00:07:36,500 --> 00:07:46,800
+x1 = 1 e x2 = 1: VS ≈ 2,42 V, acima do limiar. O LED acende — o circuito implementa a função AND!
+
+43
+00:07:47,000 --> 00:08:00,400
+Com R0 = 4,7 kΩ, as tensões ficam um pouco abaixo das teóricas com 5 kΩ (1,25 V e 2,50 V). Vale o que você medir: anote tudo na folha de registro.
+
+44
+00:08:00,600 --> 00:08:11,700
+LED nunca acende? Confira a polaridade do LED, a alimentação do LM358 (pinos 8 e 4), o resistor de 1 kΩ e a tensão de referência.
+
+45
+00:08:11,900 --> 00:08:22,200
+LED sempre aceso? Meça VS e Vref: o limiar pode estar baixo demais, ou os fios dos pinos 2 e 3 podem estar trocados.
+
+46
+00:08:22,400 --> 00:08:32,000
+As chaves não mudam nada? Verifique o comum das chaves e o GND comum. O LED pisca? Afaste Vref das tensões medidas.
+
+47
+00:08:32,200 --> 00:08:43,800
+Bônus: gire o potenciômetro até cerca de 0,6 V. Sem trocar nenhuma peça, o mesmo circuito passa a implementar a função OR.
+
+48
+00:08:44,000 --> 00:08:55,900
+Agora o LED acende em 01, 10 e 11, e só fica apagado em 00. Quem decide a regra lógica é o limiar.
+
+49
+00:08:56,100 --> 00:09:07,400
+Resumo: dados rotulados → treino em R → pesos e viés → resistores e limiar → classificação física. Bom experimento!
